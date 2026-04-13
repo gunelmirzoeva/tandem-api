@@ -9,17 +9,17 @@ import lombok.*;
 @Setter
 @Getter
 public class RegisterRequest {
-    @NotBlank
-    @Email
+    @NotBlank(message = "Email cannot be blank")
+    @Email(message = "Invalid email format")
     private String email;
 
-    @NotBlank
+    @NotBlank(message = "Password cannot be blank")
     @Pattern(
             regexp = "^(?=.*[A-Z])(?=.*[0-9]).{8,}$",
             message = "Password must be at least 8 characters long, contains one uppercase letter and one digit"
     )
     private String password;
 
-    @NotBlank
+    @NotBlank(message = "FullName cannot be blank")
     private String fullName;
 }

@@ -16,3 +16,18 @@ server:
   port: 8080
   servlet:
     context-path: /api/v1
+
+
+
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+    enabled: true
+  api-docs:
+    enabled: true
+
+
+jwt:
+  secret: ${JWT_SECRET}
+  access-expiry: ${ACCESS_EXPIRY}
+  refresh-expiry: ${REFRESH_EXPIRY}

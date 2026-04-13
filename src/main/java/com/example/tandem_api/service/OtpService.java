@@ -32,7 +32,6 @@ public class OtpService {
 
     public void invalidateOtp(UUID userId) {
         redisTemplate.delete("otp:" + userId);
-        redisTemplate.delete("otp:attempts:" + userId);
     }
 
     public int incrementAttempts(UUID userId) {
@@ -42,6 +41,11 @@ public class OtpService {
             redisTemplate.expire(key, 10, TimeUnit.MINUTES);
         }
         return attempts != null ? attempts.intValue() : 0;
+    }
+
+    public int getAttempts(UUID userId) {
+        String val = redisTemplate.opsForValue().get("otp:attempts:" + userId);
+        return val != null ? Integer.parseInt(val) : 0;
     }
 
 
