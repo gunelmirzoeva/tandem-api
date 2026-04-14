@@ -5,11 +5,10 @@ import lombok.*;
 
 import java.util.UUID;
 
+@Getter
+@Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@Builder
-@Getter
-@Setter
 public class ResendOtpRequest {
     @NotNull
     private UUID userId;

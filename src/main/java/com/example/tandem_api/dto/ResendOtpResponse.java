@@ -5,10 +5,10 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-@Builder
-@NoArgsConstructor
-@AllArgsConstructor
 @Getter
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class ResendOtpResponse {
     private String message;
     private int cooldownSeconds;

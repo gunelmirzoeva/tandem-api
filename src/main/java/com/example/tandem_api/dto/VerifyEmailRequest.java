@@ -6,11 +6,10 @@ import jakarta.validation.constraints.Size;
 import lombok.*;
 import java.util.UUID;
 
+@Getter
+@Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@Builder
-@Setter
-@Getter
 public class VerifyEmailRequest {
     @NotNull
     private UUID userId;

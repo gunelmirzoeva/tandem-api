@@ -9,6 +9,6 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class VerifyEmailResponse {
+public class LogoutResponse {
     private String message;
 }

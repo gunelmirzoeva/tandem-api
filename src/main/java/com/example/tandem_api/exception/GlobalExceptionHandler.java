@@ -55,6 +55,24 @@ public class GlobalExceptionHandler {
         return new ResponseEntity<>(new ErrorResponse(ex.getMessage()), HttpStatus.TOO_MANY_REQUESTS);
     }
 
+    @ExceptionHandler({
+            AccountNotVerifiedException.class,
+            AccountDeactivatedException.class
+    })
+    public ResponseEntity<ErrorResponse> handleForbiddenAccountExceptions(RuntimeException ex) {
+        return new ResponseEntity<>(new ErrorResponse(ex.getMessage()), HttpStatus.FORBIDDEN);
+    }
+
+    @ExceptionHandler({
+            RefreshTokenExpiredException.class,
+            RefreshTokenNotFoundException.class,
+            ReplayAttackDetectedException.class,
+            InvalidCredentialsException.class
+    })
+    public ResponseEntity<ErrorResponse> handleAccessDeniedException(RuntimeException ex) {
+        return new ResponseEntity<>(new ErrorResponse(ex.getMessage()), HttpStatus.UNAUTHORIZED);
+    }
+
     @ExceptionHandler(Exception.class)
     public ResponseEntity<ErrorResponse> handleGeneral(Exception ex) {
         return new ResponseEntity<>(new ErrorResponse("An unexpected error occurred."), HttpStatus.INTERNAL_SERVER_ERROR);
