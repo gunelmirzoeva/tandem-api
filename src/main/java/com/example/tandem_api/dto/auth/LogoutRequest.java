@@ -1,4 +1,4 @@
-package com.example.tandem_api.dto;
+package com.example.tandem_api.dto.auth;
 
 import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
@@ -10,8 +10,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class RefreshTokenRequest {
-
+public class LogoutRequest {
     @NotBlank(message = "Refresh token cannot be blank")
     private String refreshToken;
 }

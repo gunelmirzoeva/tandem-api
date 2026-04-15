@@ -1,6 +1,6 @@
 package com.example.tandem_api.controller;
 
-import com.example.tandem_api.dto.*;
+import com.example.tandem_api.dto.auth.*;
 import com.example.tandem_api.service.AuthService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;

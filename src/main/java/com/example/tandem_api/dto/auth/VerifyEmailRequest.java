@@ -1,4 +1,4 @@
-package com.example.tandem_api.dto;
+package com.example.tandem_api.dto.auth;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;

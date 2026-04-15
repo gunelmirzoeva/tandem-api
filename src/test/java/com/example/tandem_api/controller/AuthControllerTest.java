@@ -1,7 +1,7 @@
 package com.example.tandem_api.controller;
 
 import com.example.tandem_api.config.SecurityConfig;
-import com.example.tandem_api.dto.*;
+import com.example.tandem_api.dto.auth.*;
 import com.example.tandem_api.exception.*;
 import com.example.tandem_api.service.AuthService;
 import org.junit.jupiter.api.Test;

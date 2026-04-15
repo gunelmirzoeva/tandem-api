@@ -5,7 +5,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
-import com.example.tandem_api.dto.ErrorResponse;
+import com.example.tandem_api.dto.auth.ErrorResponse;
 
 import java.util.Optional;
 
@@ -22,8 +22,12 @@ public class GlobalExceptionHandler {
                 .orElse("Validation failed");
         return new ResponseEntity<>(new ErrorResponse(message), HttpStatus.BAD_REQUEST);
     }
-    @ExceptionHandler(EmailAlreadyExistsException.class)
-    public ResponseEntity<ErrorResponse> handleConflict(EmailAlreadyExistsException ex) {
+
+    @ExceptionHandler({
+            EmailAlreadyExistsException.class,
+            UserAlreadyDeactivatedException.class
+    })
+    public ResponseEntity<ErrorResponse> handleConflict(RuntimeException ex) {
         return new ResponseEntity<>(new ErrorResponse(ex.getMessage()), HttpStatus.CONFLICT);
     }
 
@@ -32,8 +36,11 @@ public class GlobalExceptionHandler {
         return new ResponseEntity<>(new ErrorResponse(ex.getMessage()), HttpStatus.GONE);
     }
 
-    @ExceptionHandler(OtpInvalidException.class)
-    public ResponseEntity<ErrorResponse> handleBadRequest(OtpInvalidException ex) {
+    @ExceptionHandler({
+            OtpInvalidException.class,
+            InvalidTimezoneException.class
+    })
+    public ResponseEntity<ErrorResponse> handleBadRequest(RuntimeException ex) {
         return new ResponseEntity<>(new ErrorResponse(ex.getMessage()), HttpStatus.BAD_REQUEST);
     }
 

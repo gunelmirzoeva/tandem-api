@@ -1,4 +1,4 @@
-package com.example.tandem_api.dto;
+package com.example.tandem_api.dto.user;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,7 +9,8 @@ import lombok.NoArgsConstructor;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class ResendOtpResponse {
+public class DeactivateUserResponse {
+
     private String message;
-    private int cooldownSeconds;
+
 }
