@@ -125,7 +125,7 @@ public class AuthService {
        }
 
        if (user.getStatus() == Status.DEACTIVATED) {
-           throw new AccountDeactivatedException("Account deactivated");
+           throw new AccountDeactivatedException("Account is deactivated");
        }
 
        String accessToken = jwtService.generateAccessToken(user.getId(), user.getEmail(), user.getRole());

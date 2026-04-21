@@ -17,6 +17,6 @@ public class UpdateProfileRequest {
     private String fullName;
 
     @NotBlank(message = "Timezone cannot be blank")
-    @Size(max = 100)
+    @Size(max = 100, message = "Timezone must not exceed 100 characters")
     private String timezone;
 }
