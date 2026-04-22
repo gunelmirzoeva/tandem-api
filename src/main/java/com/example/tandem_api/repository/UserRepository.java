@@ -1,6 +1,6 @@
 package com.example.tandem_api.repository;
 
-import com.example.tandem_api.domain.User;
+import com.example.tandem_api.domain.user.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 

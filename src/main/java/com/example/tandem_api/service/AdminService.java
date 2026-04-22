@@ -1,7 +1,7 @@
 package com.example.tandem_api.service;
 
-import com.example.tandem_api.domain.Status;
-import com.example.tandem_api.domain.User;
+import com.example.tandem_api.domain.user.Status;
+import com.example.tandem_api.domain.user.User;
 import com.example.tandem_api.dto.user.AdminUserListResponse;
 import com.example.tandem_api.dto.user.DeactivateUserResponse;
 import com.example.tandem_api.dto.user.UserProfileResponse;

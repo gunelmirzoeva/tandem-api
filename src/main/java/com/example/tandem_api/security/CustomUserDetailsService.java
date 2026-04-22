@@ -1,6 +1,6 @@
 package com.example.tandem_api.security;
 
-import com.example.tandem_api.domain.User;
+import com.example.tandem_api.domain.user.User;
 import com.example.tandem_api.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;

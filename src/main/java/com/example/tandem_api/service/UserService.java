@@ -1,6 +1,6 @@
 package com.example.tandem_api.service;
 
-import com.example.tandem_api.domain.User;
+import com.example.tandem_api.domain.user.User;
 import com.example.tandem_api.dto.user.UpdateProfileRequest;
 import com.example.tandem_api.dto.user.UserProfileResponse;
 import com.example.tandem_api.exception.InvalidTimezoneException;

@@ -1,6 +1,6 @@
 package com.example.tandem_api.service;
 
-import com.example.tandem_api.domain.Role;
+import com.example.tandem_api.domain.user.Role;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.JwtException;
 import io.jsonwebtoken.Jwts;

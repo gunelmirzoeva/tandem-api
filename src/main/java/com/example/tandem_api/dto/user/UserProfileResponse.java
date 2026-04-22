@@ -1,6 +1,6 @@
 package com.example.tandem_api.dto.user;
 
-import com.example.tandem_api.domain.Status;
+import com.example.tandem_api.domain.user.Status;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;

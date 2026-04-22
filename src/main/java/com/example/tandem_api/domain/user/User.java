@@ -1,4 +1,4 @@
-package com.example.tandem_api.domain;
+package com.example.tandem_api.domain.user;
 
 import jakarta.persistence.*;
 import lombok.*;
