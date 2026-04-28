@@ -5,6 +5,8 @@ import com.example.tandem_api.dto.user.UpdateProfileRequest;
 import com.example.tandem_api.dto.user.UserProfileResponse;
 import com.example.tandem_api.exception.InvalidTimezoneException;
 import com.example.tandem_api.exception.UserNotFoundException;
+import com.example.tandem_api.repository.SpokenLanguageRepository;
+import com.example.tandem_api.repository.TargetLanguageRepository;
 import com.example.tandem_api.repository.UserRepository;
 import com.example.tandem_api.util.TimezoneValidator;
 import lombok.RequiredArgsConstructor;
@@ -18,6 +20,8 @@ public class UserService {
 
     private final UserRepository userRepository;
     private final TimezoneValidator timezoneValidator;
+    private final SpokenLanguageRepository spokenLanguageRepository;
+    private final TargetLanguageRepository targetLanguageRepository;
 
     public UserProfileResponse getMyProfile(UUID userId) {
         User user = userRepository.findById(userId)
@@ -29,7 +33,7 @@ public class UserService {
                 .email(user.getEmail())
                 .timezone(user.getTimezone())
                 .status(user.getStatus())
-                .matchReady(false) //for now
+                .matchReady(computeMatchReady(user.getId()))
                 .createdAt(user.getCreatedAt())
                 .build();
 
@@ -55,8 +59,15 @@ public class UserService {
                 .email(user.getEmail())
                 .timezone(user.getTimezone())
                 .status(user.getStatus())
-                .matchReady(false) // for now
+                .matchReady(computeMatchReady(user.getId()))
                 .createdAt(user.getCreatedAt())
                 .build();
+    }
+
+    private boolean computeMatchReady(UUID userId) {
+        long spokenCount = spokenLanguageRepository.countByUserId(userId);
+        long targetCount = targetLanguageRepository.countByUserId(userId);
+        // availabilityCount will be added
+        return spokenCount > 0 && targetCount > 0;
     }
 }
