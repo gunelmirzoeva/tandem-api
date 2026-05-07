@@ -30,7 +30,10 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler({
             EmailAlreadyExistsException.class,
-            UserAlreadyDeactivatedException.class
+            UserAlreadyDeactivatedException.class,
+            AvailabilityBlockOverlapException.class,
+            MaxBlocksPerDayExceededException.class,
+            CannotRemoveLastBlockException.class
     })
     public ResponseEntity<ErrorResponse> handleConflict(RuntimeException ex) {
         return new ResponseEntity<>(new ErrorResponse(ex.getMessage()), HttpStatus.CONFLICT);
@@ -43,7 +46,10 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler({
             OtpInvalidException.class,
-            InvalidTimezoneException.class
+            InvalidTimezoneException.class,
+            TimezoneNotSetException.class,
+            InvalidTimeRangeException.class,
+            BlockDurationTooShortException.class,
     })
     public ResponseEntity<ErrorResponse> handleBadRequest(RuntimeException ex) {
         return new ResponseEntity<>(new ErrorResponse(ex.getMessage()), HttpStatus.BAD_REQUEST);
@@ -108,6 +114,11 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(HttpMessageNotReadableException.class)
     public ResponseEntity<ErrorResponse> handleNotReadable(HttpMessageNotReadableException ex) {
         return new ResponseEntity<>(new ErrorResponse("Invalid value provided. Check enum fields."), HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(AvailabilityBlockNotFoundException.class)
+    public ResponseEntity<ErrorResponse> handleAvailabilityBlockNotFound(AvailabilityBlockNotFoundException ex) {
+        return new ResponseEntity<>(new ErrorResponse(ex.getMessage()), HttpStatus.NOT_FOUND);
     }
 
     @ExceptionHandler(Exception.class)

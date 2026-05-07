@@ -5,6 +5,7 @@ import com.example.tandem_api.dto.user.UpdateProfileRequest;
 import com.example.tandem_api.dto.user.UserProfileResponse;
 import com.example.tandem_api.exception.InvalidTimezoneException;
 import com.example.tandem_api.exception.UserNotFoundException;
+import com.example.tandem_api.repository.AvailabilityBlockRepository;
 import com.example.tandem_api.repository.SpokenLanguageRepository;
 import com.example.tandem_api.repository.TargetLanguageRepository;
 import com.example.tandem_api.repository.UserRepository;
@@ -22,6 +23,7 @@ public class UserService {
     private final TimezoneValidator timezoneValidator;
     private final SpokenLanguageRepository spokenLanguageRepository;
     private final TargetLanguageRepository targetLanguageRepository;
+    private final AvailabilityBlockRepository availabilityBlockRepository;
 
     public UserProfileResponse getMyProfile(UUID userId) {
         User user = userRepository.findById(userId)
@@ -67,7 +69,7 @@ public class UserService {
     private boolean computeMatchReady(UUID userId) {
         long spokenCount = spokenLanguageRepository.countByUserId(userId);
         long targetCount = targetLanguageRepository.countByUserId(userId);
-        // availabilityCount will be added
-        return spokenCount > 0 && targetCount > 0;
+        long availabilityCount = availabilityBlockRepository.countByUserId(userId);
+        return spokenCount > 0 && targetCount > 0 && availabilityCount > 0;
     }
 }
