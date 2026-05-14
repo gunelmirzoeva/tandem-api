@@ -29,6 +29,11 @@ public class GlobalExceptionHandler {
     }
 
     @ExceptionHandler({
+            LanguageAlreadyInSpokenListException.class,
+            LanguageAlreadyInTargetListException.class,
+            LanguageExistsInOppositeListException.class,
+            CannotRemoveLastSpokenLanguageException.class,
+            PasswordSameAsCurrentException.class,
             EmailAlreadyExistsException.class,
             UserAlreadyDeactivatedException.class,
             AvailabilityBlockOverlapException.class,
@@ -50,6 +55,7 @@ public class GlobalExceptionHandler {
             TimezoneNotSetException.class,
             InvalidTimeRangeException.class,
             BlockDurationTooShortException.class,
+            OtpAlreadyUsedException.class
     })
     public ResponseEntity<ErrorResponse> handleBadRequest(RuntimeException ex) {
         return new ResponseEntity<>(new ErrorResponse(ex.getMessage()), HttpStatus.BAD_REQUEST);
@@ -67,7 +73,8 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler({
             ResendCooldownActiveException.class,
-            ResendLimitReachedException.class
+            ResendLimitReachedException.class,
+            PasswordResetRateLimitException.class
     })
     public ResponseEntity<ErrorResponse> handleLimitExceed(RuntimeException ex) {
         return new ResponseEntity<>(new ErrorResponse(ex.getMessage()), HttpStatus.TOO_MANY_REQUESTS);
@@ -85,7 +92,8 @@ public class GlobalExceptionHandler {
             RefreshTokenExpiredException.class,
             RefreshTokenNotFoundException.class,
             ReplayAttackDetectedException.class,
-            InvalidCredentialsException.class
+            InvalidCredentialsException.class,
+            CurrentPasswordIncorrectException.class,
     })
     public ResponseEntity<ErrorResponse> handleAccessDeniedException(RuntimeException ex) {
         return new ResponseEntity<>(new ErrorResponse(ex.getMessage()), HttpStatus.UNAUTHORIZED);
@@ -94,16 +102,6 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(UnsupportedLanguageException.class)
     public ResponseEntity<ErrorResponse> handleUnsupportedLanguageException(UnsupportedLanguageException ex) {
         return new ResponseEntity<>(new ErrorResponse(ex.getMessage()), HttpStatus.BAD_REQUEST);
-    }
-
-    @ExceptionHandler({
-            LanguageAlreadyInSpokenListException.class,
-            LanguageAlreadyInTargetListException.class,
-            LanguageExistsInOppositeListException.class,
-            CannotRemoveLastSpokenLanguageException.class
-    })
-    public ResponseEntity<ErrorResponse> handleLanguageConflict(RuntimeException ex) {
-        return new ResponseEntity<>(new ErrorResponse(ex.getMessage()), HttpStatus.CONFLICT);
     }
 
     @ExceptionHandler(LanguageNotFoundInListException.class)

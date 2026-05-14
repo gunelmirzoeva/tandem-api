@@ -13,7 +13,8 @@ import java.util.UUID;
 public class VerifyEmailRequest {
     @NotNull
     private UUID userId;
-    @NotBlank
+
+    @NotBlank(message = "OTP cannot be blank")
     @Size(min = 6, max = 6, message = "The code must be exactly 6 characters long")
     private String otp;
 }

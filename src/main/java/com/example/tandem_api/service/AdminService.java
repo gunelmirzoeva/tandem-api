@@ -21,6 +21,7 @@ import java.util.UUID;
 @RequiredArgsConstructor
 public class AdminService {
     private final UserRepository userRepository;
+    private final UserService userService;
 
     public AdminUserListResponse listUsers(int page, int size, Status status, String timezone) {
 
@@ -68,7 +69,7 @@ public class AdminService {
                 .email(user.getEmail())
                 .timezone(user.getTimezone())
                 .status(user.getStatus())
-                .matchReady(false) // change later
+                .matchReady(userService.computeMatchReady(userId))
                 .createdAt(user.getCreatedAt())
                 .build();
     }
